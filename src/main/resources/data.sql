@@ -1,3 +1,21 @@
+create table if not exists code (
+    group_cd    varchar(30)                null,
+    cd          varchar(30)                not null,
+    nm          varchar(255)               null,
+    description varchar(255)               null,
+    `order`     int                        null,
+    use_yn      char     default 'Y'       null,
+    reg_dt      datetime default sysdate() null,
+    chg_dt      datetime default sysdate() null
+);
+
+create table if not exists code_group (
+    cd          varchar(30)      null,
+    description varchar(255)     null,
+    prefix      varchar(100)     null,
+    use_yn      char default 'Y' null
+);
+
 INSERT INTO code_group (cd, description) VALUES ('SEX', '성별');
 INSERT INTO code_group (cd, description) VALUES ('GRADE', '상영등급');
 INSERT INTO code_group (cd, description) VALUES ('GENRE', '장르');
@@ -43,6 +61,8 @@ INSERT INTO code (group_cd, cd, nm, description, `order`) VALUES ('ACTOR_ROLE', 
 INSERT INTO code (group_cd, cd, nm, description, `order`) VALUES ('ACTOR_ROLE', 'SPECIAL_APPEARANCE', '특별출연', null, 7);
 INSERT INTO code (group_cd, cd, nm, description, `order`) VALUES ('ACTOR_ROLE', 'GUEST_APPEARANCE', '찬조출연', null, 8);
 INSERT INTO code (group_cd, cd, nm, description, `order`) VALUES ('STAFF_ROLE', 'DIRECTOR', '감독', null, 1);
+
+INSERT INTO cinema.member (id, brdt, eml_addr, join_dt, korn_flnm, mbl_telno, password, sex_cd, telno, updt_dt, whdwl_dt, whdwl_yn) VALUES ('seongjun', '19961224', 'victory___s@naver.com', '2022-02-20 22:08:28.000000', '이성준', '01050000738', 'dltjdwns', 'MALE', null, null, null, null);
 
 INSERT INTO movie (id, movie_grade_cd, ttl_nm, sbttl_nm, contents, release_ymd, release_end_ymd, running_hr) VALUES (1, 'OVER_TWELVE_YEAR_OLD_ALLOWED', '뷰티 인사이드', null, null, '20150820', null, '127');
 
