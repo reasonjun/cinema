@@ -1,38 +1,38 @@
 package com.reasonjun.common;
 
+import java.util.EnumSet;
+import javax.persistence.AttributeConverter;
+import javax.persistence.Converter;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.AttributeConverter;
-import javax.persistence.Converter;
-import java.util.EnumSet;
-
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @AllArgsConstructor
 @Converter
-public class EnumMapper<E extends Enum<E> & EnumMapperType> implements AttributeConverter<E, String> {
+public class EnumMapper<E extends Enum<E> & EnumMapperType> implements
+    AttributeConverter<E, String> {
 
-    private Class<E> enumClass;
+  private Class<E> enumClass;
 
-    @Override
-    public String convertToDatabaseColumn(E attribute) {
-        if (attribute == null) {
-            return null;
-        }
-
-        return attribute.getCode();
+  @Override
+  public String convertToDatabaseColumn(E attribute) {
+    if (attribute == null) {
+      return null;
     }
 
-    @Override
-    public E convertToEntityAttribute(String dbData) {
-        if (dbData == null) {
-            return null;
-        }
+    return attribute.name();
+  }
 
-        return EnumSet.allOf(enumClass).stream()
-                .filter(v -> v.getCode().equals(dbData))
-                .findAny()
-                .orElseThrow(IllegalArgumentException::new);
+  @Override
+  public E convertToEntityAttribute(String dbData) {
+    if (dbData == null) {
+      return null;
     }
+
+    return EnumSet.allOf(enumClass).stream()
+        .filter(v -> v.name().equals(dbData))
+        .findAny()
+        .orElseThrow(IllegalArgumentException::new);
+  }
 }

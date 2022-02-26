@@ -1,4 +1,4 @@
-package com.reasonjun.cinema.movie.enums;
+package com.reasonjun.cinema.movie.domain.enums;
 
 import com.reasonjun.common.EnumMapperType;
 import lombok.AllArgsConstructor;
@@ -7,8 +7,7 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum StaffRole implements EnumMapperType {
-    DIRECTOR("DIRECTOR", "감독");
+  DIRECTOR("감독");
 
-    private String code;
-    private String name;
+  private String name;
 }

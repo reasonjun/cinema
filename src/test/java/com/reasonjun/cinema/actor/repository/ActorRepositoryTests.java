@@ -14,16 +14,16 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 @DataJpaTest
 public class ActorRepositoryTests {
 
-    @Autowired
-    ActorRepository repository;
+  @Autowired
+  ActorRepository repository;
 
-    @Test
-    public void findAllTest() {
-        assertThat(repository.findAll().size()).isEqualTo(8);
-    }
+  @Test
+  public void findAllTest() {
+    assertThat(repository.findAll().size()).isEqualTo(8);
+  }
 
-    @Test
-    public void findByIdTest() {
-        assertThat(repository.findById(1).map(Actor::getId).get()).isEqualTo(1);
-    }
+  @Test
+  public void findByIdTest() {
+    assertThat(repository.findById(1).map(Actor::getId).get()).isEqualTo(1);
+  }
 }
