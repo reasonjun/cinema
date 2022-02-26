@@ -19,7 +19,6 @@ import java.util.Arrays;
 import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
@@ -29,7 +28,6 @@ import org.springframework.test.web.servlet.MockMvc;
 
 
 @WebMvcTest(ActorController.class)
-@AutoConfigureMockMvc
 @Import({ActorRepresentationModelAssembler.class})
 public class ActorControllerTest {
 
@@ -69,7 +67,7 @@ public class ActorControllerTest {
         .andExpect(jsonPath("$._embedded.actors[0].engFlnm", is("HanHyojoo")))
         .andExpect(jsonPath("$._embedded.actors[0].frgnrYn", is("N")))
         .andExpect(jsonPath("$._embedded.actors[0].kornFlnm", is("한효주")))
-        .andExpect(jsonPath("$._embedded.actors[0].sex", is(FEMALE.toString())))
+        .andExpect(jsonPath("$._embedded.actors[0].sex", is(FEMALE.name())))
         .andExpect(
             jsonPath("$._embedded.actors[0]._links.self.href", is("http://localhost/actors/1")))
         .andExpect(
@@ -79,7 +77,7 @@ public class ActorControllerTest {
         .andExpect(jsonPath("$._embedded.actors[1].engFlnm", is("")))
         .andExpect(jsonPath("$._embedded.actors[1].frgnrYn", is("N")))
         .andExpect(jsonPath("$._embedded.actors[1].kornFlnm", is("박서준")))
-        .andExpect(jsonPath("$._embedded.actors[1].sex", is(MALE.toString())))
+        .andExpect(jsonPath("$._embedded.actors[1].sex", is(MALE.name())))
         .andExpect(
             jsonPath("$._embedded.actors[1]._links.self.href", is("http://localhost/actors/2")))
         .andExpect(
@@ -110,7 +108,7 @@ public class ActorControllerTest {
         .andExpect(jsonPath("$.engFlnm", is("HanHyojoo")))
         .andExpect(jsonPath("$.frgnrYn", is("N")))
         .andExpect(jsonPath("$.kornFlnm", is("한효주")))
-        .andExpect(jsonPath("$.sex", is(FEMALE.toString())))
+        .andExpect(jsonPath("$.sex", is(FEMALE.name())))
         .andExpect(jsonPath("$._links.self.href", is("http://localhost/actors/1")))
         .andExpect(jsonPath("$._links.actors.href", is("http://localhost/actors")))
         .andReturn();
