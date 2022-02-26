@@ -6,9 +6,10 @@ import com.reasonjun.common.SimpleIdentifiableRepresentationModelAssembler;
 import org.springframework.stereotype.Component;
 
 @Component
-public class MemberRepresentationModelAssembler extends SimpleIdentifiableRepresentationModelAssembler<Member> {
+public class MemberRepresentationModelAssembler extends
+    SimpleIdentifiableRepresentationModelAssembler<Member> {
 
-    public MemberRepresentationModelAssembler() {
-        super(MemberController.class);
-    }
+  public MemberRepresentationModelAssembler() {
+    super(MemberController.class);
+  }
 }
