@@ -13,7 +13,7 @@ import org.springframework.test.web.servlet.MockMvc;
 public class MovieControllerTests {
 
   @Autowired
-  private MockMvc mvc;
+  private MockMvc mockMvc;
 
   @MockBean
   private MemberRepository repository;

@@ -32,7 +32,7 @@ import org.springframework.test.web.servlet.MockMvc;
 public class ActorControllerTest {
 
   @Autowired
-  private MockMvc mvc;
+  private MockMvc mockMvc;
 
   @MockBean
   private ActorRepository repository;
@@ -58,7 +58,7 @@ public class ActorControllerTest {
                 .sex(MALE)
                 .build()));
 
-    mvc.perform(get("/actors").accept(MediaTypes.HAL_JSON_VALUE))
+    mockMvc.perform(get("/actors").accept(MediaTypes.HAL_JSON_VALUE))
         .andDo(print())
         .andExpect(status().isOk())
         .andExpect(header().string(HttpHeaders.CONTENT_TYPE, MediaTypes.HAL_JSON_VALUE))
@@ -99,7 +99,7 @@ public class ActorControllerTest {
                 .sex(FEMALE)
                 .build()));
 
-    mvc.perform(get("/actors/1").accept(MediaTypes.HAL_JSON_VALUE))
+    mockMvc.perform(get("/actors/1").accept(MediaTypes.HAL_JSON_VALUE))
         .andDo(print())
         .andExpect(status().isOk())
         .andExpect(header().string(HttpHeaders.CONTENT_TYPE, MediaTypes.HAL_JSON_VALUE))

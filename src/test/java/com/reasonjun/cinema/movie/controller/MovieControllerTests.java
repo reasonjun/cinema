@@ -30,7 +30,7 @@ import org.springframework.test.web.servlet.MockMvc;
 class MovieControllerTests {
 
   @Autowired
-  private MockMvc mvc;
+  private MockMvc mockMvc;
 
   @MockBean
   private MovieRepository repository;
@@ -54,7 +54,7 @@ class MovieControllerTests {
                 .runningHr("021100")
                 .build()));
 
-    mvc.perform(get("/movies").accept(MediaTypes.HAL_JSON_VALUE))
+    mockMvc.perform(get("/movies").accept(MediaTypes.HAL_JSON_VALUE))
         .andDo(print())
         .andExpect(status().isOk())
         .andExpect(header().string(HttpHeaders.CONTENT_TYPE, MediaTypes.HAL_JSON_VALUE))
@@ -94,7 +94,7 @@ class MovieControllerTests {
                 .runningHr("020700")
                 .build()));
 
-    mvc.perform(get("/movies/1").accept(MediaTypes.HAL_JSON_VALUE))
+    mockMvc.perform(get("/movies/1").accept(MediaTypes.HAL_JSON_VALUE))
         .andDo(print())
         .andExpect(status().isOk())
         .andExpect(header().string(HttpHeaders.CONTENT_TYPE, MediaTypes.HAL_JSON_VALUE))
